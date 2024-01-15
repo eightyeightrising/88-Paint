@@ -41,25 +41,6 @@
 				action: () => { file_save(); },
 				description: localize("Saves the active document."),
 			},
-			{
-				item: localize("Save &As"),
-				// in mspaint, no shortcut is listed; it supports F12 (but in a browser that opens the dev tools)
-				// it doesn't support Ctrl+Shift+S but that's a good & common modern shortcut
-				shortcut: "Ctrl+Shift+S",
-				speech_recognition: [
-					// this is ridiculous
-					// this would be really simple in JSGF format
-					"save as", "save as a new file", "save as a new picture", "save as a new image", "save a new file", "save new file",
-					"save a new document", "save a new image file", "save a new image", "save a new picture",
-					"save as a copy", "save a copy", "save as copy", "save under a new name", "save with a new name",
-					"save document as a copy", "save document copy", "save document as copy", "save document under a new name", "save document with a new name",
-					"save image as a copy", "save image copy", "save image as copy", "save image under a new name", "save image with a new name",
-					"save file as a copy", "save file copy", "save file as copy", "save file under a new name", "save file with a new name",
-					"save image file as a copy", "save image file copy", "save image file as copy", "save image file under a new name", "save image file with a new name",
-				],
-				action: () => { file_save_as(); },
-				description: localize("Saves the active document with a new name."),
-			},
 			MENU_DIVIDER,
 			{
 				item: localize("&Load From URL"),
