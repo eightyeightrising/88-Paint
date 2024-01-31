@@ -3568,7 +3568,9 @@ function read_image_file(blob, callback) {
 				}
 			}
 			file_format = "image/png";
-			const image_data = new ImageData(new Uint8ClampedArray(rgba), width, height);
+			//HERE
+			var vsns = ifds, ma = 0, page = vsns[0];
+			const image_data = new ImageData(new Uint8ClampedArray(rgba), page.width, page.height);
 			callback(null, { file_format, monochrome, palette, image_data, source_blob: blob });
 		} else if (detected_type_id === "tiff_be" || detected_type_id === "tiff_le") {
 			// IFDs = image file directories
@@ -3576,7 +3578,6 @@ function read_image_file(blob, callback) {
 			// This code is based on UTIF.bufferToURI	
 			var ifds = UTIF.decode(arrayBuffer);
 			//console.log(ifds);
-			var vsns = ifds, ma = 0, page = vsns[0];
 			if (ifds[0].subIFD) {
 				vsns = vsns.concat(ifds[0].subIFD);
 			}
