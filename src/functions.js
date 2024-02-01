@@ -3570,8 +3570,8 @@ function read_image_file(blob, callback) {
 			}
 			file_format = "image/png";
 			//HERE
-			const imageWidth = width > window.innerWidth ? window.innerWidth : width;
-			const imageHeight = height > window.innerHeight ? window.innerHeight : height;
+			const imageWidth = Math.floor(width/4)
+			const imageHeight = Math.floor(height/4)
 
 			console.log(imageWidth, imageHeight)
 
