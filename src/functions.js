@@ -817,6 +817,15 @@ async function load_image_from_uri(uri) {
 						reject(error);
 					} else {
 						resolve(info);
+						const rect = $canvas_area[0].getBoundingClientRect();
+						const margin = 30; // leave a margin so scrollbars won't appear
+						let mag = Math.min(
+							(rect.width - margin) / main_canvas.width,
+							(rect.height - margin) / main_canvas.height,
+						);
+						// round to an integer percent for the View > Zoom > Custom... dialog, which shows non-integers as invalid
+						mag = Math.floor(100 * mag) / 100;
+						set_magnification(mag);
 					}
 				});
 			});
@@ -917,6 +926,15 @@ function open_from_file(file, source_file_handle) {
 		}
 		image_info.source_file_handle = source_file_handle
 		open_from_image_info(image_info);
+		const rect = $canvas_area[0].getBoundingClientRect();
+		const margin = 30; // leave a margin so scrollbars won't appear
+		let mag = Math.min(
+			(rect.width - margin) / main_canvas.width,
+			(rect.height - margin) / main_canvas.height,
+		);
+		// round to an integer percent for the View > Zoom > Custom... dialog, which shows non-integers as invalid
+		mag = Math.floor(100 * mag) / 100;
+		set_magnification(mag);
 	});
 }
 
@@ -1559,6 +1577,15 @@ function paste_image_from_file(blob) {
 			return;
 		}
 		paste(info.image || make_canvas(info.image_data));
+		const rect = $canvas_area[0].getBoundingClientRect();
+		const margin = 30; // leave a margin so scrollbars won't appear
+		let mag = Math.min(
+			(rect.width - margin) / main_canvas.width,
+			(rect.height - margin) / main_canvas.height,
+		);
+		// round to an integer percent for the View > Zoom > Custom... dialog, which shows non-integers as invalid
+		mag = Math.floor(100 * mag) / 100;
+		set_magnification(mag);
 	});
 }
 
@@ -3699,6 +3726,15 @@ function update_from_saved_file(blob) {
 		}, () => {
 			main_ctx.copy(info.image || info.image_data);
 		});
+		const rect = $canvas_area[0].getBoundingClientRect();
+		const margin = 30; // leave a margin so scrollbars won't appear
+		let mag = Math.min(
+			(rect.width - margin) / main_canvas.width,
+			(rect.height - margin) / main_canvas.height,
+		);
+		// round to an integer percent for the View > Zoom > Custom... dialog, which shows non-integers as invalid
+		mag = Math.floor(100 * mag) / 100;
+		set_magnification(mag);
 	});
 }
 
