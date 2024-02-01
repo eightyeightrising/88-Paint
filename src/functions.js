@@ -855,6 +855,7 @@ function open_from_image_info(info, callback, canceled, into_existing_session, f
 			(rect.width - margin) / main_canvas.width,
 			(rect.height - margin) / main_canvas.height,
 		);
+		console.log("mag", mag);
 		// round to an integer percent for the View > Zoom > Custom... dialog, which shows non-integers as invalid
 		mag = Math.floor(100 * mag) / 100;
 		set_magnification(mag);
