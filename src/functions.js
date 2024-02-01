@@ -337,6 +337,7 @@ function set_magnification(new_scale, anchor_point) {
 	const anchor_on_page = from_canvas_coords(anchor_point);
 
 	magnification = new_scale;
+
 	if (new_scale !== 1) {
 		return_to_magnification = new_scale;
 	}
@@ -829,6 +830,7 @@ async function load_image_from_uri(uri) {
 	if (is_download) {
 		$status_text.text("Failed to download picture.");
 	}
+	console.log("loaded from all URIs:")
 	const error = new Error(`failed to fetch image from any of ${uris_to_try.length} URI(s):\n  ${fails.map((fail) =>
 		(fail.statusText ? `${fail.status} ${fail.statusText} ` : "") + fail.url + (fail.error ? `\n    ${fail.error}` : "")
 	).join("\n  ")}`);
