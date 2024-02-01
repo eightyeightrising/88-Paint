@@ -3569,11 +3569,7 @@ function read_image_file(blob, callback) {
 			}
 			file_format = "image/png";
 			//HERE
-
-			const imageWidth = width > window.innerWidth ? window.innerWidth : width;
-			const imageHeight = height > window.innerHeight ? window.innerHeight : height;
-
-			const image_data = new ImageData(new Uint8ClampedArray(rgba), imageWidth, imageHeight);
+			const image_data = new ImageData(new Uint8ClampedArray(rgba), width, height);
 			callback(null, { file_format, monochrome, palette, image_data, source_blob: blob });
 		} else if (detected_type_id === "tiff_be" || detected_type_id === "tiff_le") {
 			// IFDs = image file directories
