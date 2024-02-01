@@ -353,6 +353,7 @@ function set_magnification(new_scale, anchor_point) {
 	$G.triggerHandler("resize"); // updates handles & grid
 	$G.trigger("option-changed"); // updates options area
 	$G.trigger("magnification-changed"); // updates custom zoom window
+	console.log("set magnification to ", new_scale)
 }
 
 let $custom_zoom_window;
@@ -3570,10 +3571,8 @@ function read_image_file(blob, callback) {
 			}
 			file_format = "image/png";
 			//HERE
-			const imageWidth = Math.floor(width/4)
-			const imageHeight = Math.floor(height/4)
-
-			console.log(imageWidth, imageHeight)
+			const imageWidth = width
+			const imageHeight = height
 
 			const image_data = new ImageData(new Uint8ClampedArray(rgba), imageWidth, imageHeight);
 			callback(null, { file_format, monochrome, palette, image_data, source_blob: blob });
