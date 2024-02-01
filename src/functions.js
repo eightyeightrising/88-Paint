@@ -830,7 +830,6 @@ async function load_image_from_uri(uri) {
 	if (is_download) {
 		$status_text.text("Failed to download picture.");
 	}
-	console.log("loaded from all URIs:")
 	const error = new Error(`failed to fetch image from any of ${uris_to_try.length} URI(s):\n  ${fails.map((fail) =>
 		(fail.statusText ? `${fail.status} ${fail.statusText} ` : "") + fail.url + (fail.error ? `\n    ${fail.error}` : "")
 	).join("\n  ")}`);
@@ -920,6 +919,7 @@ function open_from_file(file, source_file_handle) {
 		}
 		image_info.source_file_handle = source_file_handle
 		open_from_image_info(image_info);
+		console.log(4)
 	});
 }
 

@@ -134,6 +134,7 @@
 				else if (uri) {
 					load_image_from_uri(uri).then((info) => {
 						open_from_image_info(info, null, null, true, true);
+						console.log(1)
 					}, (error) => {
 						show_error_message("Failed to open image from local storage.", error);
 					});
@@ -549,6 +550,7 @@
 
 			load_image_from_uri(url).then((info) => {
 				open_from_image_info(info, null, null, true, true);
+				console.log(2)
 			}, show_resource_load_error_message);
 
 		} else {
