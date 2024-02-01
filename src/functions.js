@@ -849,16 +849,7 @@ function open_from_image_info(info, callback, canceled, into_existing_session, f
 		reset_file();
 		reset_selected_colors();
 		reset_canvas_and_history(); // (with newly reset colors)
-		const rect = $canvas_area[0].getBoundingClientRect();
-		const margin = 30; // leave a margin so scrollbars won't appear
-		let mag = Math.min(
-			(rect.width - margin) / main_canvas.width,
-			(rect.height - margin) / main_canvas.height,
-		);
-		console.log("mag", mag);
-		// round to an integer percent for the View > Zoom > Custom... dialog, which shows non-integers as invalid
-		mag = Math.floor(100 * mag) / 100;
-		set_magnification(mag);
+		set_magnification(default_magnification);
 
 		main_ctx.copy(info.image || info.image_data);
 		apply_file_format_and_palette_info(info);
@@ -3551,6 +3542,7 @@ function read_image_file(blob, callback) {
 			const decoded = UPNG.decode(arrayBuffer);
 			const rgba = UPNG.toRGBA8(decoded)[0];
 			const { width, height, tabs, ctype } = decoded;
+			console.log(width, height)
 			// If it's a palettized PNG, load the palette for the Colors box.
 			// Note: PLTE (palette) chunk must be present for palettized PNGs,
 			// but can also be present as a recommended set of colors in true-color mode.
