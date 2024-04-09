@@ -626,8 +626,8 @@ window.default_brush_shape = "circle";
 window.default_brush_size = 4;
 window.default_eraser_size = 8;
 window.default_airbrush_size = 9;
-window.default_pencil_size = 1.2; // 1
-window.default_stroke_size = 1.2; // 1 applies to lines, curves, shape outlines
+window.default_pencil_size = 1;
+window.default_stroke_size = 1; // applies to lines, curves, shape outlines
 // declared like this for Cypress tests
 window.brush_shape = default_brush_shape;
 window.brush_size = default_brush_size;
