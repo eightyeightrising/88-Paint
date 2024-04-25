@@ -53,22 +53,45 @@
         },
         description: localize("Opens an existing document."),
       },
+      // ADDED
       {
-        item: localize("&Save"),
-        shortcut: "Ctrl+S",
+        //item: localize("&Upload To Imgur"),
+        item: localize("Save"),
         speech_recognition: [
+          //"upload to imgur", "upload image to imgur", "upload picture to imgur"
           "save",
           "save document",
           "save file",
           "save image",
           "save picture",
           "save image file",
-          // "save a document", "save a file", "save an image", "save an image file", // too "save as"-like
           "save the document",
           "save the file",
           "save the image",
           "save the image file",
+        ],
+        action: () => {
+          // include the selection in the saved image
+          deselect();
 
+          main_canvas.toBlob((blob) => {
+            sanity_check_blob(blob, () => {
+              //show_uploader(blob);
+              post_blob_message(blob);
+            });
+          });
+        },
+        //description: localize("Uploads the active document to Imgur"),
+        description: localize(
+          "Uploads active document to cloud and saves to localStorage"
+        ),
+      },
+      {
+        //item: localize("&Save"),
+        item: localize("&Download"),
+        //shortcut: "Ctrl+S",
+        shortcut: "Ctrl+D",
+        speech_recognition: [
           "download",
           "download document",
           "download file",

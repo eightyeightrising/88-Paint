@@ -1265,7 +1265,8 @@ $G.on("keydown", (e) => {
       case "O":
         file_open();
         break;
-      case "S":
+      //case "S":
+      case "D":
         e.shiftKey ? file_save_as() : file_save();
         break;
       case "A":
