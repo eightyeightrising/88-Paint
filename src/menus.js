@@ -78,7 +78,7 @@
             sanity_check_blob(blob, () => {
               //show_uploader(blob);
               const blobUrl = get_url_param("load");
-              post_blob_message(blob, blobUrl);
+              post_blob_message(blob, "Save", blobUrl);
             });
           });
         },
@@ -108,7 +108,8 @@
 
           main_canvas.toBlob((blob) => {
             sanity_check_blob(blob, () => {
-              post_blob_message(blob);
+              const blobUrl = get_url_param("load");
+              post_blob_message(blob, "Save As", blobUrl);
             });
           });
         },

@@ -1,8 +1,8 @@
 ((exports) => {
   let $imgur_window;
 
-  function post_blob_message(blob, blobUrl) {
-    window.parent.postMessage({ type: "paint", blob, blobUrl }, "*"); // TODO: SET TARGET ORIGIN
+  function post_blob_message(blob, action, blobUrl) {
+    window.parent.postMessage({ type: "paint", blob, blobUrl, action }, "*"); // TODO: SET TARGET ORIGIN
   }
 
   function show_uploader(blob) {
