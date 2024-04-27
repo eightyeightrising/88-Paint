@@ -77,6 +77,37 @@
           main_canvas.toBlob((blob) => {
             sanity_check_blob(blob, () => {
               //show_uploader(blob);
+              const blobUrl = get_url_param("load");
+              post_blob_message(blob, blobUrl);
+            });
+          });
+        },
+        //description: localize("Uploads the active document to Imgur"),
+        description: localize(
+          "Uploads active document to cloud and saves to localStorage"
+        ),
+      },
+      {
+        item: localize("Save As"),
+        speech_recognition: [
+          //"upload to imgur", "upload image to imgur", "upload picture to imgur"
+          "save",
+          "save document",
+          "save file",
+          "save image",
+          "save picture",
+          "save image file",
+          "save the document",
+          "save the file",
+          "save the image",
+          "save the image file",
+        ],
+        action: () => {
+          // include the selection in the saved image
+          deselect();
+
+          main_canvas.toBlob((blob) => {
+            sanity_check_blob(blob, () => {
               post_blob_message(blob);
             });
           });
