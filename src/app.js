@@ -1263,11 +1263,13 @@ $G.on("keydown", (e) => {
         }
         break;
       case "O":
-        file_open();
+        post_blob_message(null, "Open");
         break;
-      //case "S":
+      case "S":
+        e.shiftKey ? blob_save_as() : blob_save();
+        break;
       case "D":
-        e.shiftKey ? file_save_as() : file_save();
+        file_save_as();
         break;
       case "A":
         select_all();

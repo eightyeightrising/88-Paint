@@ -108,7 +108,7 @@ loaded_localizations("de", {
   "&Save": "&Speichern",
   Save: "Speichern",
   //"Ctrl+S": "Strg+S",
-  "Ctrl+D": "Strg+S",
+  "Ctrl+D": "Strg+D",
   "Save &As": "Speichern &unter",
   "Save As": "Speichern unter",
   "Print Pre&view": "Seitenansi&cht",

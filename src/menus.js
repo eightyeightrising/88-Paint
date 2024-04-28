@@ -49,14 +49,15 @@
           "browse for an image file",
         ],
         action: () => {
-          file_open();
+          post_blob_message(null, "Open");
         },
-        description: localize("Opens an existing document."),
+        description: localize("Opens an existing document from file system."),
       },
       // ADDED
       {
         //item: localize("&Upload To Imgur"),
-        item: localize("Save"),
+        item: localize("&Save"),
+        shortcut: "Ctrl+S",
         speech_recognition: [
           //"upload to imgur", "upload image to imgur", "upload picture to imgur"
           "save",
@@ -83,24 +84,18 @@
           });
         },
         //description: localize("Uploads the active document to Imgur"),
-        description: localize(
-          "Uploads active document to cloud and saves to localStorage"
-        ),
+        description: localize("Save file progress"),
       },
       {
-        item: localize("Save As"),
+        item: localize("&Save As"),
+        shortcut: "Ctrl+Shift+S",
         speech_recognition: [
-          //"upload to imgur", "upload image to imgur", "upload picture to imgur"
-          "save",
-          "save document",
-          "save file",
-          "save image",
-          "save picture",
-          "save image file",
-          "save the document",
-          "save the file",
-          "save the image",
-          "save the image file",
+          "save as",
+          "save new document",
+          "save new file",
+          "save new image",
+          "save new picture",
+          "save new image file",
         ],
         action: () => {
           // include the selection in the saved image
@@ -117,6 +112,34 @@
         description: localize(
           "Uploads active document to cloud and saves to localStorage"
         ),
+      },
+      MENU_DIVIDER,
+      {
+        item: localize("Open from Computer"),
+        speech_recognition: [
+          "open from computer",
+          "open document from computer",
+          "open file from computer",
+          "open an image file from computer",
+          "open a document from computer",
+          "open a file from computer",
+          "load document from computer",
+          "load a document from computer",
+          "load an image file from computer",
+          "load an image from computer",
+          "show file picker",
+          "show file chooser",
+          "show file browser",
+          "show finder",
+          "browser for file",
+          "browse for a file",
+          "browse for an image",
+          "browse for an image file",
+        ],
+        action: () => {
+          file_open();
+        },
+        description: localize("Opens an existing file from computer."),
       },
       {
         //item: localize("&Save"),
