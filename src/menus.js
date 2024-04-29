@@ -49,7 +49,14 @@
           "browse for an image file",
         ],
         action: () => {
-          post_blob_message(null, "Open");
+          deselect();
+
+          main_canvas.toBlob((blob) => {
+            sanity_check_blob(blob, () => {
+              const blobUrl = get_url_param("load");
+              post_blob_message(blob, "Open", blobUrl);
+            });
+          });
         },
         description: localize("Opens an existing document from file system."),
       },

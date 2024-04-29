@@ -28,6 +28,17 @@
     });
   }
 
+  function blob_open() {
+    deselect();
+
+    main_canvas.toBlob((blob) => {
+      sanity_check_blob(blob, () => {
+        const blobUrl = get_url_param("load");
+        post_blob_message(blob, "Open", blobUrl);
+      });
+    });
+  }
+
   function show_uploader(blob) {
     if ($imgur_window) {
       $imgur_window.close();
@@ -247,4 +258,5 @@
   exports.post_blob_message = post_blob_message;
   exports.blob_save_as = blob_save_as;
   exports.blob_save = blob_save;
+  exports.blob_open = blob_open;
 })(window);

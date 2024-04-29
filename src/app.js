@@ -1263,7 +1263,7 @@ $G.on("keydown", (e) => {
         }
         break;
       case "O":
-        post_blob_message(null, "Open");
+        blob_open();
         break;
       case "S":
         e.shiftKey ? blob_save_as() : blob_save();
