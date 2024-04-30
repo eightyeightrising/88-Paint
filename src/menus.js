@@ -132,6 +132,9 @@
           "share picture",
           "share image file",
         ],
+        enabled: () => {
+          return !!$loading_image_url;
+        },
         action: () => {
           // include the selection in the saved image
           deselect();
