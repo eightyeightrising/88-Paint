@@ -2,9 +2,16 @@
   let $imgur_window;
 
   function post_blob_message(blob, action, blobUrl) {
-    window.parent.postMessage({ type: "paint", blob, blobUrl, action }, "*", [
-      blob,
-    ]); // TODO: SET TARGET ORIGIN
+    const reader = new FileReader();
+    reader.onload = () => {
+      const arrayBuffer = reader.result;
+      window.parent.postMessage(
+        { type: "paint", arrayBuffer, blobUrl, action },
+        "*",
+        [arrayBuffer]
+      ); // TODO: SET TARGET ORIGIN
+    };
+    reader.readAsArrayBuffer(blob);
   }
 
   function blob_save_as() {
@@ -12,8 +19,7 @@
 
     main_canvas.toBlob((blob) => {
       sanity_check_blob(blob, () => {
-        const blobUrl = get_url_param("load");
-        post_blob_message(blob, "Save As", blobUrl);
+        post_blob_message(blob, "Save As", $loading_image_url);
       });
     });
   }
@@ -23,9 +29,7 @@
 
     main_canvas.toBlob((blob) => {
       sanity_check_blob(blob, () => {
-        //show_uploader(blob);
-        const blobUrl = get_url_param("load");
-        post_blob_message(blob, "Save", blobUrl);
+        post_blob_message(blob, "Save", $loading_image_url);
       });
     });
   }
@@ -35,8 +39,7 @@
 
     main_canvas.toBlob((blob) => {
       sanity_check_blob(blob, () => {
-        const blobUrl = get_url_param("load");
-        post_blob_message(blob, "Open", blobUrl);
+        post_blob_message(blob, "Open", $loading_image_url);
       });
     });
   }
