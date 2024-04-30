@@ -2,7 +2,9 @@
   let $imgur_window;
 
   function post_blob_message(blob, action, blobUrl) {
-    window.parent.postMessage({ type: "paint", blob, blobUrl, action }, "*"); // TODO: SET TARGET ORIGIN
+    window.parent.postMessage({ type: "paint", blob, blobUrl, action }, "*", [
+      blob,
+    ]); // TODO: SET TARGET ORIGIN
   }
 
   function blob_save_as() {
