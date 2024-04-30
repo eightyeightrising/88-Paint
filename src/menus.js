@@ -170,6 +170,27 @@
         },
         description: localize("Saves the active document."),
       },
+      {
+        item: localize("Get Image URL"),
+        speech_recognition: [
+          "get image URL",
+          "get file URL",
+          "get document URL",
+          "get picture URL",
+        ],
+        action: () => {
+          // include the selection in the saved image
+          deselect();
+
+          main_canvas.toBlob((blob) => {
+            sanity_check_blob(blob, () => {
+              const blobUrl = get_url_param("load");
+              post_blob_message(blob, "Get URL", blobUrl);
+            });
+          });
+        },
+        description: localize("Gets URL of saved active document"),
+      },
       MENU_DIVIDER,
       {
         item: localize("&Load From URL"),
