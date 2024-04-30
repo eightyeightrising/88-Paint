@@ -1,12 +1,19 @@
 ((exports) => {
   let $imgur_window;
 
+  function send_blob_status_loading(action) {
+    window.parent.postMessage(
+      { type: "paint", action, status: "loading" },
+      "*"
+    ); // TODO: SET TARGET ORIGIN
+  }
+
   function post_blob_message(blob, action, blobUrl) {
     const reader = new FileReader();
     reader.onload = () => {
       const arrayBuffer = reader.result;
       window.parent.postMessage(
-        { type: "paint", arrayBuffer, blobUrl, action },
+        { type: "paint", arrayBuffer, blobUrl, action, status: "complete" },
         "*",
         [arrayBuffer]
       ); // TODO: SET TARGET ORIGIN
@@ -16,7 +23,7 @@
 
   function blob_save_as() {
     deselect();
-
+    send_blob_status_loading("Save As");
     main_canvas.toBlob((blob) => {
       sanity_check_blob(blob, () => {
         post_blob_message(blob, "Save As", $loading_image_url);
@@ -26,7 +33,7 @@
 
   function blob_save() {
     deselect();
-
+    send_blob_status_loading("Save");
     main_canvas.toBlob((blob) => {
       sanity_check_blob(blob, () => {
         post_blob_message(blob, "Save", $loading_image_url);
@@ -36,7 +43,7 @@
 
   function blob_open() {
     deselect();
-
+    send_blob_status_loading("Open");
     main_canvas.toBlob((blob) => {
       sanity_check_blob(blob, () => {
         post_blob_message(blob, "Open", $loading_image_url);
@@ -264,4 +271,5 @@
   exports.blob_save_as = blob_save_as;
   exports.blob_save = blob_save;
   exports.blob_open = blob_open;
+  exports.send_blob_status_loading = send_blob_status_loading;
 })(window);

@@ -23,6 +23,7 @@
         action: () => {
           deselect();
 
+          send_blob_status_loading("New");
           main_canvas.toBlob((blob) => {
             sanity_check_blob(blob, () => {
               post_blob_message(blob, "New", $loading_image_url);
@@ -57,6 +58,7 @@
         action: () => {
           deselect();
 
+          send_blob_status_loading("Open");
           main_canvas.toBlob((blob) => {
             sanity_check_blob(blob, () => {
               post_blob_message(blob, "Open", $loading_image_url);
@@ -86,7 +88,7 @@
         action: () => {
           // include the selection in the saved image
           deselect();
-
+          send_blob_status_loading("Save");
           main_canvas.toBlob((blob) => {
             sanity_check_blob(blob, () => {
               post_blob_message(blob, "Save", $loading_image_url);
@@ -110,7 +112,7 @@
         action: () => {
           // include the selection in the saved image
           deselect();
-
+          send_blob_status_loading("Save As");
           main_canvas.toBlob((blob) => {
             sanity_check_blob(blob, () => {
               post_blob_message(blob, "Save As", $loading_image_url);
@@ -138,7 +140,7 @@
         action: () => {
           // include the selection in the saved image
           deselect();
-
+          send_blob_status_loading("Share");
           main_canvas.toBlob((blob) => {
             sanity_check_blob(blob, () => {
               post_blob_message(blob, "Share", $loading_image_url);
@@ -211,7 +213,7 @@
         action: () => {
           // include the selection in the saved image
           deselect();
-
+          send_blob_status_loading("Get URL");
           main_canvas.toBlob((blob) => {
             sanity_check_blob(blob, () => {
               post_blob_message(blob, "Get URL", $loading_image_url);
