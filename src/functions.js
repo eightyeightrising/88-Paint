@@ -10,6 +10,8 @@ const param_types = {
   load: "string",
 };
 
+let $loading_image_url = "";
+
 const exclusive_params = ["local", "session", "load"];
 
 function get_all_url_params() {
@@ -922,6 +924,7 @@ async function load_image_from_uri(uri) {
             uris_to_try.length
           }): "${uri_to_try}"`
         );
+        $loading_image_url = uri_to_try;
       }
 
       const original_response = await fetch(uri_to_try);

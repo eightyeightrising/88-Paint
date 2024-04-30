@@ -9,8 +9,8 @@
   const menus = {
     [localize("&File")]: [
       {
-        item: localize("&New"),
-        shortcut: window.is_electron_app ? "Ctrl+N" : "Ctrl+Alt+N", // Ctrl+N opens a new browser window
+        item: localize("New"),
+        //shortcut: window.is_electron_app ? "Ctrl+N" : "Ctrl+Alt+N", // Ctrl+N opens a new browser window
         speech_recognition: [
           "new",
           "new file",
@@ -21,7 +21,13 @@
           "start a new document",
         ],
         action: () => {
-          file_new();
+          deselect();
+
+          main_canvas.toBlob((blob) => {
+            sanity_check_blob(blob, () => {
+              post_blob_message(blob, "New", $loading_image_url);
+            });
+          });
         },
         description: localize("Creates a new document."),
       },
@@ -53,8 +59,7 @@
 
           main_canvas.toBlob((blob) => {
             sanity_check_blob(blob, () => {
-              const blobUrl = get_url_param("load");
-              post_blob_message(blob, "Open", blobUrl);
+              post_blob_message(blob, "Open", $loading_image_url);
             });
           });
         },
@@ -84,9 +89,7 @@
 
           main_canvas.toBlob((blob) => {
             sanity_check_blob(blob, () => {
-              //show_uploader(blob);
-              const blobUrl = get_url_param("load");
-              post_blob_message(blob, "Save", blobUrl);
+              post_blob_message(blob, "Save", $loading_image_url);
             });
           });
         },
@@ -110,8 +113,7 @@
 
           main_canvas.toBlob((blob) => {
             sanity_check_blob(blob, () => {
-              const blobUrl = get_url_param("load");
-              post_blob_message(blob, "Save As", blobUrl);
+              post_blob_message(blob, "Save As", $loading_image_url);
             });
           });
         },
@@ -119,6 +121,28 @@
         description: localize(
           "Uploads active document to cloud and saves to localStorage"
         ),
+      },
+      {
+        item: localize("Share"),
+        speech_recognition: [
+          "share",
+          "share document",
+          "share file",
+          "share image",
+          "share picture",
+          "share image file",
+        ],
+        action: () => {
+          // include the selection in the saved image
+          deselect();
+
+          main_canvas.toBlob((blob) => {
+            sanity_check_blob(blob, () => {
+              post_blob_message(blob, "Share", $loading_image_url);
+            });
+          });
+        },
+        description: localize("Gets URL of Paint file"),
       },
       MENU_DIVIDER,
       {
@@ -178,14 +202,16 @@
           "get document URL",
           "get picture URL",
         ],
+        enabled: () => {
+          return !!$loading_image_url;
+        },
         action: () => {
           // include the selection in the saved image
           deselect();
 
           main_canvas.toBlob((blob) => {
             sanity_check_blob(blob, () => {
-              const blobUrl = get_url_param("load");
-              post_blob_message(blob, "Get URL", blobUrl);
+              post_blob_message(blob, "Get URL", $loading_image_url);
             });
           });
         },
