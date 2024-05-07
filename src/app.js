@@ -1259,7 +1259,7 @@ const handleKeyDown = (e) => {
         break;
       case "F":
         if (!e.repeat && !e.originalEvent?.repeat) {
-          view_bitmap();
+          //view_bitmap();
         }
         break;
       case "O":

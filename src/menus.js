@@ -825,6 +825,7 @@
           },
         ],
       },
+      /*
       {
         item: localize("&View Bitmap"),
         shortcut: "Ctrl+F",
@@ -847,6 +848,7 @@
         },
         description: localize("Displays the entire picture."),
       },
+			*/
     ],
     [localize("&Image")]: [
       // @TODO: speech recognition: terms that apply to selection
