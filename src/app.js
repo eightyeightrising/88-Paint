@@ -1329,7 +1329,7 @@ const handleKeyDownMessage = (e) => {
     metaKey: data.metaKey,
     repeat: data.repeat,
   });
-  window.dispatch(newEvent);
+  window.dispatchEvent(newEvent);
 };
 
 window.addEventListener("message", handleKeyDownMessage);
