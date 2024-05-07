@@ -1311,7 +1311,7 @@ const handleKeyDown = (e) => {
   }
 };
 
-const handleKeydownMessage = (e) => {
+const handleKeyDownMessage = (e) => {
   /* TODO: 
   if (e.origin !== "https://88rising-99.vercel.app/") {
     return;
