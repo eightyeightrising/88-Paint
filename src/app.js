@@ -1313,7 +1313,28 @@ const handleKeyDown = (e) => {
 
 console.log(window.parent.document);
 
-window.parent.document.addEventListener("keydown", handleKeyDown);
+const handleKeydownMessage = (e) => {
+  /* TODO: 
+  if (e.origin !== "https://88rising-99.vercel.app/") {
+    return;
+  }
+	*/
+  console.log(e.origin);
+  const data = e.data;
+  if (data.type !== "keydown") return;
+  const newEvent = new KeyboardEvent(data.type, {
+    key: data.key,
+    keyCode: data.keyCode,
+    altKey: data.altKey,
+    ctrlKey: data.ctrlKey,
+    shiftKey: data.shiftKey,
+    metaKey: data.metaKey,
+    repeat: data.repeat,
+  });
+  $G.dispatch(newEvent);
+};
+
+window.addEventListener("message", handleKeyDownMessage);
 
 $G.on("keydown", handleKeyDown);
 
