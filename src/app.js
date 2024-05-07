@@ -1056,8 +1056,8 @@ $("body")
     }
   });
 
-$G.on("keydown", (e) => {
-  if (e.isDefaultPrevented()) {
+const handleKeyDown = (e) => {
+  if (e.isDefaultPrevented?.()) {
     return;
   }
   if (e.key === "Escape") {
@@ -1309,7 +1309,14 @@ $G.on("keydown", (e) => {
     e.preventDefault();
     // put nothing below! note return above
   }
-});
+};
+
+console.log(window.parent.document);
+
+window.parent.document.addEventListener("keydown", handleKeyDown);
+
+$G.on("keydown", handleKeyDown);
+
 let alt_zooming = false;
 addEventListener("keyup", (e) => {
   if (e.key === "Alt" && alt_zooming) {
