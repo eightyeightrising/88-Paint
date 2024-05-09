@@ -4,8 +4,8 @@
   function send_blob_status_loading(action) {
     window.parent.postMessage(
       { type: "paint", action, status: "loading" },
-      "*"
-    ); // TODO: SET TARGET ORIGIN
+      "https://www.1999world.com"
+    );
   }
 
   function post_blob_message(blob, action, blobUrl) {
@@ -14,9 +14,9 @@
       const arrayBuffer = reader.result;
       window.parent.postMessage(
         { type: "paint", arrayBuffer, blobUrl, action, status: "complete" },
-        "*",
+        "https://www.1999world.com",
         [arrayBuffer]
-      ); // TODO: SET TARGET ORIGIN
+      );
     };
     reader.readAsArrayBuffer(blob);
   }

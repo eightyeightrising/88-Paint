@@ -1312,11 +1312,10 @@ const handleKeyDown = (e) => {
 };
 
 const handleKeyDownMessage = (e) => {
-  /* TODO: 
-  if (e.origin !== "https://88rising-99.vercel.app/") {
+  if (e.origin !== "https://www.1999world.com") {
     return;
   }
-	*/
+
   console.log(e.origin);
   const data = e.data;
   if (data.type !== "keydown") return;
